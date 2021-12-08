@@ -49,3 +49,46 @@ func _set_animation():
 
 func _ready():
 	pass
+
+
+
+func _on_Button7_button_down():
+	var a = InputEventAction.new()
+	a.action = "move_right"
+	a.pressed = true
+	Input.parse_input_event(a)
+
+
+func _on_Button7_button_up():
+	var a = InputEventAction.new()
+	a.action = "move_right"
+	a.pressed = false
+	Input.parse_input_event(a)
+
+
+func _on_Button6_button_up():
+	var a = InputEventAction.new()
+	a.action = "move_left"
+	a.pressed = false
+	Input.parse_input_event(a)
+
+
+func _on_Button6_button_down():
+	var a = InputEventAction.new()
+	a.action = "move_left"
+	a.pressed = true
+	Input.parse_input_event(a)
+
+
+func _on_Button4_button_down():
+	var a = InputEventAction.new()
+	a.action = "jump"
+	a.pressed = true
+	Input.parse_input_event(a)
+
+
+func _on_Button4_button_up():
+	var a = InputEventAction.new()
+	a.action = "jump"
+	a.pressed = false
+	Input.parse_input_event(a)
