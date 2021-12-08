@@ -2,13 +2,13 @@ extends KinematicBody2D
 
 var velocity = Vector2.ZERO
 var move_speed = 480
-var gravity = 1200
+var gravity = 20
 var jump_force = -720
 var is_grounded
 onready var raycasts = $Raycasts
 
 func _physics_process(delta):
-	velocity.y += gravity * delta
+	velocity.y += gravity
 
 	_get_input()
 	
@@ -28,8 +28,7 @@ func _get_input():
 		
 func _input(event):
 	if event.is_action_pressed("jump") and is_grounded:
-		print(is_grounded)
-		velocity.y = jump_force / 2
+		velocity.y = jump_force / 1.5
 		
 func _check_is_ground():
 	for raycast in raycasts.get_children():

@@ -246,3 +246,16 @@ position = Vector2( 9, -6 )
 enabled = true
 cast_to = Vector2( 0, 12 )
 collision_mask = 8
+
+[node name="Camera" type="Camera2D" parent="."]
+current = true
+limit_left = -32
+limit_bottom = 200
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 15.0
+drag_margin_left = 0.41
+drag_margin_top = 0.3
+drag_margin_right = 0.29
+drag_margin_bottom = 0.31
