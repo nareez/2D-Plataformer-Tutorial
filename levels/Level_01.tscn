@@ -1149,6 +1149,9 @@ position = Vector2( 1120, 0 )
 
 [node name="HUD" parent="." instance=ExtResource( 15 )]
 
+[node name="lifes" parent="HUD/HBoxContainer/Holder" index="0"]
+expand = true
+
 [connection signal="button_down" from="CanvasLayer/Button7" to="Player" method="_on_Button7_button_down"]
 [connection signal="button_up" from="CanvasLayer/Button7" to="Player" method="_on_Button7_button_up"]
 [connection signal="button_down" from="CanvasLayer/Button6" to="Player" method="_on_Button6_button_down"]
