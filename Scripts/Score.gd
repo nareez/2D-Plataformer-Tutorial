@@ -1,7 +1,6 @@
 extends Label
 
 func _process(_delta):
-	text = String(Global.fruits)
-	print(_delta)
+	text = "%02d" % Global.fruits
 
 

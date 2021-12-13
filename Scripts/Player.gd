@@ -5,11 +5,18 @@ var move_speed = 480
 var gravity = 20
 var jump_force = -720
 var is_grounded
-var health = 3
+var player_health = 3
+var max_health = 3
 var is_hurted = false
 var knockback_direction = 1
 var knockback_int = 600
 onready var raycasts = $Raycasts
+
+signal change_life(player_health)
+
+func _ready():
+	connect("change_life", get_parent().get_node("HUD/HBoxContainer/Holder"), "onChangeLife")
+	emit_signal("change_life", max_health)
 
 func _physics_process(_delta):
 	velocity.y += gravity
@@ -65,11 +72,6 @@ func _set_animation():
 	if $anim.assigned_animation != anim:
 		$anim.play(anim)
 
-func _ready():
-	pass
-
-
-
 func _on_Button7_button_down():
 	var a = InputEventAction.new()
 	a.action = "move_right"
@@ -116,14 +118,15 @@ func knockback():
 	velocity = move_and_slide(velocity)
 
 func _on_hurtbox_body_entered(_body):
-	health -= 1
+	player_health -= 1
 	is_hurted = true
+	emit_signal("change_life", player_health)
 	knockback()
 	get_node("hurtbox/collision").set_deferred("disabled", true)
 	yield(get_tree().create_timer(0.5), "timeout")
 	get_node("hurtbox/collision").set_deferred("disabled", false)
 	is_hurted = false
 	
-	if health <= 0:
+	if player_health <= 0:
 		queue_free()
 		get_tree().reload_current_scene()
