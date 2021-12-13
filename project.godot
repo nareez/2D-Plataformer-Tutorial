@@ -26,6 +26,7 @@ window/stretch/aspect="keep"
 [global]
 
 layers=false
+shapes=false
 
 [importer_defaults]
 

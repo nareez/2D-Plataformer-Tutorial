@@ -13,10 +13,12 @@ onready var raycasts = $Raycasts
 
 func _physics_process(_delta):
 	velocity.y += gravity
-
-	_get_input()
+	velocity.x = 0
 	
-	velocity = move_and_slide(velocity)
+	if !is_hurted:
+		_get_input()
+
+	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	is_grounded = _check_is_ground()
 	
