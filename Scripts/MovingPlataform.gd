@@ -27,5 +27,5 @@ func _start_tween():
 	
 	tween.start()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	platform.position = platform.position.linear_interpolate(follow, 0.05)
