@@ -310,4 +310,16 @@ collision_mask = 2
 position = Vector2( -0.5, -16.5 )
 shape = SubResource( 9 )
 
+[node name="left" type="RayCast2D" parent="."]
+position = Vector2( -5, -7 )
+enabled = true
+cast_to = Vector2( -16, 0 )
+collision_mask = 2
+
+[node name="right" type="RayCast2D" parent="."]
+position = Vector2( 4, -7 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+collision_mask = 2
+
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]

@@ -19,6 +19,7 @@ func _ready():
 	emit_signal("change_life", max_health)
 	
 	position = Global.checkpoint_pos if Global.checkpoint_pos != Vector2.ZERO else position
+
 func _physics_process(_delta):
 	velocity.y += gravity
 	velocity.x = 0
@@ -45,7 +46,18 @@ func _get_input():
 	if move_direction != 0:
 		$Texture.scale.x = move_direction
 		knockback_direction = move_direction
-		
+#		$right.scale.x = move_direction
+#		$left.scale.x = -move_direction
+
+func knockback():
+	
+	if $left.is_colliding():
+		velocity.x += knockback_direction * knockback_int
+	if $right.is_colliding():
+		velocity.x -= knockback_direction * knockback_int	
+	
+	velocity = move_and_slide(velocity)
+
 func _input(event):
 	if event.is_action_pressed("jump") and is_grounded:
 		velocity.y = jump_force / 1.5
@@ -114,9 +126,7 @@ func _on_Button4_button_up():
 	a.pressed = false
 	Input.parse_input_event(a)
 
-func knockback():
-	velocity.x = -knockback_direction * knockback_int
-	velocity = move_and_slide(velocity)
+
 
 func _on_hurtbox_body_entered(_body):
 	player_health -= 1
@@ -124,7 +134,7 @@ func _on_hurtbox_body_entered(_body):
 	emit_signal("change_life", player_health)
 	knockback()
 	get_node("hurtbox/collision").set_deferred("disabled", true)
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.6), "timeout")
 	get_node("hurtbox/collision").set_deferred("disabled", false)
 	is_hurted = false
 	
