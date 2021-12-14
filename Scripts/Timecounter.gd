@@ -3,7 +3,7 @@ extends Control
 export (int) var minutes = 0
 export (int) var seconds = 0
 
-func _process(delta):
+func _process(_delta):
 	if minutes > 0 and seconds <=0:
 		minutes -= 1
 		seconds = 59
