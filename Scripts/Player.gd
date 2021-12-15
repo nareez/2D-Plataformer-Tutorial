@@ -46,8 +46,7 @@ func _get_input():
 	if move_direction != 0:
 		$Texture.scale.x = move_direction
 		knockback_direction = move_direction
-#		$right.scale.x = move_direction
-#		$left.scale.x = -move_direction
+		$step_fx.scale.x = move_direction
 
 func knockback():
 	
@@ -75,6 +74,7 @@ func _set_animation():
 		anim = "jump"
 	elif velocity.x != 0:
 		anim = "run"
+		$step_fx.set_emitting(true)
 	
 	if velocity.y > 0 and !is_grounded:
 		anim = "fall"

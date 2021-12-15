@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Terrain/1 - Grassland/Background parts/1 - Foreground_scenery.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Scripts/Reset_Level.gd" type="Script" id=14]
 [ext_resource path="res://Prefabs/HUD.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Prefabs/checkpoint.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Prefabs/goal.tscn" type="PackedScene" id=17]
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -1020,9 +1021,6 @@ position = Vector2( 704, 144 )
 [node name="FallingPlataform3" parent="FallingPlatforms" instance=ExtResource( 12 )]
 position = Vector2( 784, 144 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 32, 112 )
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -1161,6 +1159,12 @@ position = Vector2( 870, 144 )
 
 [node name="checkpoint2" parent="." instance=ExtResource( 16 )]
 position = Vector2( 295, 17 )
+
+[node name="goal" parent="." instance=ExtResource( 17 )]
+position = Vector2( 1127, 193 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 943, 154 )
 
 [connection signal="button_down" from="CanvasLayer/Button7" to="Player" method="_on_Button7_button_down"]
 [connection signal="button_up" from="CanvasLayer/Button7" to="Player" method="_on_Button7_button_up"]
