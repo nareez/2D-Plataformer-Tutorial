@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Main Characters/Ninja Frog/Idle (32x32).png" type="Texture" id=2]
@@ -274,10 +274,13 @@ tracks/2/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 11.5, 12 )
+extents = Vector2( 11.5, 8.5 )
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 12.5, 10.5 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 10, 1.5 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 78
@@ -311,7 +314,7 @@ anims/run = SubResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( -0.5, -14 )
+position = Vector2( -0.5, -10.5 )
 shape = SubResource( 3 )
 
 [node name="Raycasts" type="Node2D" parent="."]
@@ -348,7 +351,7 @@ collision_layer = 32
 collision_mask = 2
 
 [node name="collision" type="CollisionShape2D" parent="hurtbox"]
-position = Vector2( -0.5, -16.5 )
+position = Vector2( -1, -16 )
 shape = SubResource( 9 )
 
 [node name="left" type="RayCast2D" parent="."]
@@ -365,4 +368,12 @@ enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 16
+
+[node name="collision" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -24 )
+shape = SubResource( 15 )
+
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

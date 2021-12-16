@@ -144,3 +144,8 @@ func _on_hurtbox_body_entered(_body):
 
 func hit_checkpoint():
 	Global.checkpoint_pos = position
+
+
+func _on_Area2D_body_entered(body):
+	if body.has_method("destroy"):
+		body.destroy()

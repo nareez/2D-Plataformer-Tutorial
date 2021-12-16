@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Terrain/1 - Grassland/Background parts/1 - Foreground_scenery.png" type="Texture" id=2]
@@ -19,6 +19,9 @@
 [ext_resource path="res://Prefabs/goal.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Prefabs/Trasition_in.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Scenes/birdie.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Prefabs/breakBox.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Items/banana_rig.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Items/apple_rig.tscn" type="PackedScene" id=22]
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -1173,6 +1176,11 @@ position = Vector2( 200, 65 )
 position = Vector2( 12, 112 )
 
 [node name="Trasition_in" parent="." instance=ExtResource( 18 )]
+
+[node name="breakBox" parent="." instance=ExtResource( 20 )]
+position = Vector2( 75, 68 )
+fruit_instance = [ ExtResource( 22 ), ExtResource( 21 ) ]
+fruits = 5
 
 [connection signal="button_down" from="CanvasLayer/Button7" to="Player" method="_on_Button7_button_down"]
 [connection signal="button_up" from="CanvasLayer/Button7" to="Player" method="_on_Button7_button_up"]
