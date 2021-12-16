@@ -15,6 +15,7 @@ onready var raycasts = $Raycasts
 signal change_life(player_health)
 
 func _ready():
+	Global.player = self
 	connect("change_life", get_parent().get_node("HUD/HBoxContainer/Holder"), "onChangeLife")
 	emit_signal("change_life", max_health)
 	
