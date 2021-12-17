@@ -313,12 +313,10 @@ anims/jump = SubResource( 5 )
 anims/run = SubResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -0.5, -10.5 )
 shape = SubResource( 3 )
 
 [node name="Raycasts" type="Node2D" parent="."]
-visible = false
 
 [node name="RayCast" type="RayCast2D" parent="Raycasts"]
 position = Vector2( -7, -6 )
@@ -346,23 +344,20 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="hurtbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 32
-collision_mask = 2
+collision_mask = 34
 
 [node name="collision" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2( -1, -16 )
 shape = SubResource( 9 )
 
 [node name="left" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( -5, -7 )
 enabled = true
 cast_to = Vector2( -16, 0 )
 collision_mask = 2
 
 [node name="right" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( 4, -7 )
 enabled = true
 cast_to = Vector2( 16, 0 )
@@ -375,5 +370,6 @@ collision_mask = 16
 position = Vector2( 0, -24 )
 shape = SubResource( 15 )
 
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

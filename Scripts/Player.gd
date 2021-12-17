@@ -48,14 +48,13 @@ func _get_input():
 		$Texture.scale.x = move_direction
 		knockback_direction = move_direction
 		$step_fx.scale.x = move_direction
+	
 
 func knockback():
-	
 	if $left.is_colliding():
-		velocity.x += knockback_direction * knockback_int
+		velocity.x = knockback_int
 	if $right.is_colliding():
-		velocity.x -= knockback_direction * knockback_int	
-	
+		velocity.x =  -knockback_int
 	velocity = move_and_slide(velocity)
 
 func _input(event):
@@ -150,3 +149,19 @@ func hit_checkpoint():
 func _on_Area2D_body_entered(body):
 	if body.has_method("destroy"):
 		body.destroy()
+
+
+func _on_hurtbox_area_entered(area):
+	print(area)
+	player_health -= 1
+	is_hurted = true
+	emit_signal("change_life", player_health)
+	knockback()
+	get_node("hurtbox/collision").set_deferred("disabled", true)
+	yield(get_tree().create_timer(0.6), "timeout")
+	get_node("hurtbox/collision").set_deferred("disabled", false)
+	is_hurted = false
+	
+	if player_health <= 0:
+		queue_free()
+		get_tree().reload_current_scene()
