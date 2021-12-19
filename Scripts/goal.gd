@@ -10,3 +10,4 @@ func _on_goal_body_entered(body):
 		$confetti2.emitting = true
 		changer.change_scene(path)
 		Global.checkpoint_pos = Vector2.ZERO
+		$AudioStreamPlayer2D.play()

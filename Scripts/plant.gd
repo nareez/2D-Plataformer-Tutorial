@@ -56,7 +56,7 @@ func _on_hitbox_body_entered(body):
 	body.velocity.y = body.jump_force / 2
 	yield(get_tree().create_timer(0.2), "timeout")
 	is_hitted = false
-	
+	$hit_sound.play()
 	if health <= 0:
+#		get_node("Hitbox/collision").set_deferred("disabled", true)
 		queue_free()
-		get_node("Hitbox/collision").set_deferred("disabled", true)

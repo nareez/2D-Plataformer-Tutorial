@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Terrain/1 - Grassland/Background parts/1 - Foreground_scenery.png" type="Texture" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://Items/banana_rig.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Items/apple_rig.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Scenes/plant.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Assets/Music/Retro Beat.ogg" type="AudioStream" id=24]
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -1177,7 +1178,7 @@ position = Vector2( 200, 65 )
 position = Vector2( 12, 112 )
 
 [node name="plant" parent="." instance=ExtResource( 23 )]
-position = Vector2( 291, 16 )
+position = Vector2( 248, 80 )
 
 [node name="Trasition_in" parent="." instance=ExtResource( 18 )]
 
@@ -1190,6 +1191,10 @@ fruits = 5
 position = Vector2( 100, 68 )
 fruit_instance = [ ExtResource( 22 ), ExtResource( 21 ) ]
 fruits = 5
+
+[node name="music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 24 )
+autoplay = true
 
 [connection signal="button_down" from="CanvasLayer/Button7" to="Player" method="_on_Button7_button_down"]
 [connection signal="button_up" from="CanvasLayer/Button7" to="Player" method="_on_Button7_button_up"]

@@ -60,6 +60,7 @@ func knockback():
 func _input(event):
 	if event.is_action_pressed("jump") and is_grounded:
 		velocity.y = jump_force / 1.5
+		$JumpFx.play()
 		
 func _check_is_ground():
 	for raycast in raycasts.get_children():
