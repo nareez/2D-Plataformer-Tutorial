@@ -1,6 +1,6 @@
 extends enemyBase
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	motion.y = 0
 	if $ray_wall.is_colliding():
 		$ray_wall.scale.x *= -1

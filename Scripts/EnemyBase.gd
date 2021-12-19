@@ -19,7 +19,7 @@ func _physics_process(_delta):
 	_set_animation()
 	motion = move_and_slide(motion)
 
-func apply_gravity(delta):
+func apply_gravity(_delta):
 	motion.y += gravity
 
 func _on_anim_animation_finished(anim_name):
