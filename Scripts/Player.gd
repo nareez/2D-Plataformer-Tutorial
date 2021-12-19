@@ -10,6 +10,7 @@ var max_health = 3
 var is_hurted = false
 var knockback_direction = 1
 var knockback_int = 600
+var is_pushing = false
 onready var raycasts = $Raycasts
 
 signal change_life(player_health)
@@ -27,7 +28,17 @@ func _physics_process(_delta):
 	
 	if !is_hurted:
 		_get_input()
-
+		
+		is_pushing = false
+	if $pushRight.is_colliding():
+		var obj = $pushRight.get_collider()
+		obj.move_and_slide(Vector2(1,0) * move_speed)
+		is_pushing = true
+	elif $pushLeft.is_colliding():
+		var obj = $pushLeft.get_collider()
+		obj.move_and_slide(Vector2(-1,0) * move_speed)
+		is_pushing = true
+		
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	is_grounded = _check_is_ground()
@@ -48,6 +59,13 @@ func _get_input():
 		$Texture.scale.x = move_direction
 		knockback_direction = move_direction
 		$step_fx.scale.x = move_direction
+	
+	if velocity.x > 1:
+		$pushRight.set_enabled(true)
+		$pushLeft.set_enabled(false)
+	else:
+		$pushRight.set_enabled(false)
+		$pushLeft.set_enabled(true)
 	
 
 func knockback():
@@ -73,7 +91,7 @@ func _set_animation():
 	
 	if !is_grounded:
 		anim = "jump"
-	elif velocity.x != 0:
+	elif velocity.x != 0 or is_pushing:
 		anim = "run"
 		$step_fx.set_emitting(true)
 	

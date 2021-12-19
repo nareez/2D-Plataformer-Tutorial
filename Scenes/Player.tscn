@@ -375,6 +375,17 @@ shape = SubResource( 15 )
 stream = ExtResource( 8 )
 volume_db = -10.0
 
+[node name="pushRight" type="RayCast2D" parent="."]
+position = Vector2( 11, -12 )
+cast_to = Vector2( 2, 0 )
+collision_mask = 128
+
+[node name="pushLeft" type="RayCast2D" parent="."]
+position = Vector2( -14, -12 )
+rotation = 3.14159
+cast_to = Vector2( 2, 0 )
+collision_mask = 128
+
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
