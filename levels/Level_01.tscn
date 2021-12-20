@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Terrain/1 - Grassland/Background parts/1 - Foreground_scenery.png" type="Texture" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://Assets/Music/Retro Beat.ogg" type="AudioStream" id=24]
 [ext_resource path="res://Prefabs/MoveBox.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Prefabs/trampolim.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Prefabs/ChainSaw.tscn" type="PackedScene" id=27]
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -1142,7 +1143,7 @@ path = "res://levels/Level_02.tscn"
 position = Vector2( 200, 65 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 32, 112 )
+position = Vector2( 16, 112 )
 
 [node name="plant" parent="." instance=ExtResource( 23 )]
 position = Vector2( 248, 80 )
@@ -1160,7 +1161,7 @@ fruit_instance = [ ExtResource( 22 ), ExtResource( 21 ) ]
 fruits = 5
 
 [node name="MoveBox" parent="." instance=ExtResource( 25 )]
-position = Vector2( 952, 168 )
+position = Vector2( 96, 105 )
 
 [node name="trampolim" parent="." instance=ExtResource( 26 )]
 position = Vector2( 1056, 192 )
@@ -1169,6 +1170,9 @@ position = Vector2( 1056, 192 )
 stream = ExtResource( 24 )
 volume_db = -9.613
 autoplay = true
+
+[node name="ChainSaw" parent="." instance=ExtResource( 27 )]
+position = Vector2( 928, 150 )
 
 [connection signal="body_entered" from="FallZone" to="FallZone" method="_on_FallZone_body_entered"]
 

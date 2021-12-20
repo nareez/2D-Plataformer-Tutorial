@@ -18,7 +18,7 @@ func _ready():
 	Global.player = self
 	connect("change_life", get_parent().get_node("HUD/HBoxContainer/Holder"), "onChangeLife")
 	emit_signal("change_life", max_health)
-	
+	Global.player_health = max_health
 	position = Global.checkpoint_pos if Global.checkpoint_pos != Vector2.ZERO else position
 
 func _physics_process(_delta):
@@ -155,13 +155,14 @@ func _on_hurtbox_body_entered(_body):
 	yield(get_tree().create_timer(0.6), "timeout")
 	get_node("hurtbox/collision").set_deferred("disabled", false)
 	is_hurted = false
-	
+	print(Global.player_health)
 	gameOver()
 
 func gameOver():
+	print(Global.player_health)
 	if Global.player_health < 1:
-		queue_free()
 		get_tree().change_scene("res://Prefabs/GameOver.tscn")
+		queue_free()
 
 func hit_checkpoint():
 	Global.checkpoint_pos = position
@@ -173,7 +174,6 @@ func _on_Area2D_body_entered(body):
 
 
 func _on_hurtbox_area_entered(area):
-	print(area)
 	Global.player_health -= 1
 	is_hurted = true
 	emit_signal("change_life", Global.player_health)
@@ -184,5 +184,4 @@ func _on_hurtbox_area_entered(area):
 	is_hurted = false
 	
 	if Global.player_health <= 0:
-		queue_free()
-		get_tree().reload_current_scene()
+		gameOver()
