@@ -6,4 +6,4 @@ func _ready():
 
 
 func _on_FallZone_body_entered(_body):
-	get_tree().reload_current_scene()
+	get_tree().change_scene("res://Prefabs/GameOver.tscn")
