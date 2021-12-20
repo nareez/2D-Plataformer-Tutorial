@@ -4,8 +4,7 @@ var velocity = Vector2.ZERO
 var move_speed = 480
 var gravity = 20
 var jump_force = -720
-var is_grounded
-var player_health = 3
+var is_grounded = false
 var max_health = 3
 var is_hurted = false
 var knockback_direction = 1
@@ -148,9 +147,9 @@ func _on_Button4_button_up():
 
 
 func _on_hurtbox_body_entered(_body):
-	player_health -= 1
+	Global.player_health -= 1
 	is_hurted = true
-	emit_signal("change_life", player_health)
+	emit_signal("change_life", Global.player_health)
 	knockback()
 	get_node("hurtbox/collision").set_deferred("disabled", true)
 	yield(get_tree().create_timer(0.6), "timeout")
@@ -160,7 +159,7 @@ func _on_hurtbox_body_entered(_body):
 	gameOver()
 
 func gameOver():
-	if player_health < 1:
+	if Global.player_health < 1:
 		queue_free()
 		get_tree().change_scene("res://Prefabs/GameOver.tscn")
 
@@ -175,15 +174,15 @@ func _on_Area2D_body_entered(body):
 
 func _on_hurtbox_area_entered(area):
 	print(area)
-	player_health -= 1
+	Global.player_health -= 1
 	is_hurted = true
-	emit_signal("change_life", player_health)
+	emit_signal("change_life", Global.player_health)
 	knockback()
 	get_node("hurtbox/collision").set_deferred("disabled", true)
 	yield(get_tree().create_timer(0.6), "timeout")
 	get_node("hurtbox/collision").set_deferred("disabled", false)
 	is_hurted = false
 	
-	if player_health <= 0:
+	if Global.player_health <= 0:
 		queue_free()
 		get_tree().reload_current_scene()

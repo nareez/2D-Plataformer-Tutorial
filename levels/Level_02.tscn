@@ -1126,7 +1126,7 @@ __meta__ = {
 position = Vector2( 304, 16 )
 
 [node name="mushroom2" parent="." instance=ExtResource( 12 )]
-position = Vector2( 138, 113 )
+position = Vector2( 240, 139 )
 
 [node name="items" type="Node2D" parent="."]
 
