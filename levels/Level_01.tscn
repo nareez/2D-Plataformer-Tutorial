@@ -1143,7 +1143,7 @@ path = "res://levels/Level_02.tscn"
 position = Vector2( 200, 65 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 16, 112 )
+position = Vector2( 881, 128 )
 
 [node name="plant" parent="." instance=ExtResource( 23 )]
 position = Vector2( 248, 80 )
@@ -1162,6 +1162,7 @@ fruits = 5
 
 [node name="MoveBox" parent="." instance=ExtResource( 25 )]
 position = Vector2( 96, 105 )
+collision_mask = 11
 
 [node name="trampolim" parent="." instance=ExtResource( 26 )]
 position = Vector2( 1056, 192 )
